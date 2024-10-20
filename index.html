@@ -1,0 +1,1645 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>❣️</title>
+   <link rel="stylesheet" href="style.css">
+   <!-- FontAweome CDN Link for Icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+   <script src="/script.js">
+      /script.js
+   </script>
+
+
+   <style>
+      * {
+         user-select: none;
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      body {
+         font-family: "Poppins", sans-serif;
+         background-color: #e0e5ec;
+         width: 90%;
+         height: 85vh;
+         background: #fff;
+         background: #f3f4f6;
+      }
+
+      ::selection {
+         color: #fff;
+         background: #007bff;
+      }
+
+
+      .quiz_box.activeQuiz,
+      .result_box.activeResult {
+         opacity: 1;
+         z-index: 5;
+         pointer-events: auto;
+
+      }
+
+      .start_btn {
+         margin-top: 100px;
+         margin-left: 30vw;
+
+
+      }
+
+
+
+      button {
+         font-size: 1.3em;
+         padding: 0.5em 1.8em;
+         border-radius: 0.2em;
+         box-shadow: 0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9), -0.2rem -0.2rem 0.4rem #fff;
+
+      }
+
+
+      .quiz_box {
+         width: 99vw;
+         border-radius: 5px;
+         margin-top: 2px;
+         opacity: 0;
+         position: absolute;
+         top: 4px;
+
+         height: auto;
+         pointer-events: none;
+         transition: all 0.7s ease;
+
+      }
+
+
+      .quiz_box header {
+         position: relative;
+         z-index: 2;
+         height: 70px;
+         padding: 0 30px;
+         border-radius: 5px 5px 0 0;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+
+         box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
+      }
+
+
+      .quiz_box header .title {
+         font-size: 15px;
+         font-weight: 600;
+      }
+
+
+      .quiz_box header .timer {
+         color: #004085;
+         background: #cce5ff;
+         border: 1px solid #b8daff;
+         height: 45px;
+         padding: 0px 5px;
+         border-radius: 5px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+
+      }
+
+
+      .quiz_box header .timer .time_left_txt {
+         font-weight: 400;
+         font-size: 15px;
+         user-select: none;
+      }
+
+      .quiz_box header .timer .timer_sec {
+         font-size: 18px;
+         font-weight: 500;
+         width: 45px;
+         color: #fff;
+         border-radius: 5px;
+         line-height: 30px;
+         text-align: center;
+         background: #343a40;
+         border: 1px solid #343a40;
+         user-select: none;
+         margin-left: 7px;
+      }
+
+      .quiz_box header .time_line {
+         position: absolute;
+         bottom: 0px;
+         left: 0px;
+         height: 3px;
+         background: #007bff;
+         width: 90vw;
+         margin-left: 3vw;
+         border-radius: 4px;
+      }
+
+      section {
+         padding: 25px 30px 20px 30px;
+      }
+
+      section .que_text {
+         font-size: 16px;
+         line-height: 25px;
+         font-family: Georgia, 'Times New Roman', Times, serif;
+
+
+
+      }
+
+      section .option_list {
+         padding: 20px 0px;
+         display: block;
+      }
+
+      section .option_list .option {
+         background: #f9fafc;
+         #007BFF border-radius: 5px;
+         padding: 10px 15px;
+         font-size: 13px;
+         margin-bottom: 15px;
+         cursor: pointer;
+         transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         width: 100%;
+         padding: 1em;
+         margin: 1.7em 0;
+         text-align: left;
+         outline: none;
+
+         position: relative;
+
+         box-shadow: 0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9),
+            -0.2rem -0.2rem 0.4rem #fff;
+         background: white;
+
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+         border-radius: 0.56em;
+      }
+
+
+
+      section .option_list .option:last-child {
+         margin-bottom: 0px;
+      }
+
+
+      section .option_list .option.correct {
+         color: #155724;
+         background: #d4edda;
+      }
+
+      section .option_list .option.incorrect {
+         color: #721c24;
+         background: #f8d7da;
+      }
+
+      section .option_list .option.disabled {
+         pointer-events: none;
+      }
+
+
+      section .option_list .option .icon {
+         height: 26px;
+         width: 26px;
+         border: 2px solid transparent;
+         border-radius: 50%;
+         text-align: center;
+         font-size: 13px;
+         pointer-events: none;
+         position: absolute;
+         right: 15px;
+
+      }
+
+      .option_list .option .icon.tick {
+         color: #23903c;
+         border-color: #23903c;
+         background: #d4edda;
+         padding-top: 5px;
+
+      }
+
+      .option_list .option .icon.cross {
+         color: #a42834;
+         background: #f8d7da;
+         border-color: #a42834;
+         padding-top: 5px;
+
+      }
+
+      footer {
+         height: 60px;
+         padding: 0 30px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         border-top: 1px solid lightgrey;
+      }
+
+      footer .total_que span {
+         display: flex;
+         user-select: none;
+      }
+
+      footer .total_que span p {
+         font-weight: 500;
+         padding: 0 5px;
+      }
+
+      footer .total_que span p:first-child {
+         padding-left: 0px;
+      }
+
+      footer button {
+         height: 40px;
+         padding: 0 13px;
+         font-size: 18px;
+         font-weight: 400;
+         cursor: pointer;
+         border: none;
+         outline: none;
+         color: #fff;
+         border-radius: 5px;
+         background: #007bff;
+         border: 1px solid #007bff;
+         line-height: 10px;
+         opacity: 0;
+         transform: scale(0.95);
+         transition: background-color 0.3s ease, transform 0.1s ease;
+
+      }
+
+      footer button:active {
+         background: #0263ca;
+
+         background-color: #0056b3;
+         /* Darker shade of blue */
+         transform: scale(0.85);
+         /* Slightly shrink on click */
+      }
+
+      .next_btn {
+         pointer-events: none;
+      }
+
+      footer button.show {
+         opacity: 1;
+         pointer-events: auto;
+         transform: scale(1);
+                  z-index: 100000;
+
+      }
+
+      .result_box {
+         position: absolute;
+         display: flex;
+         padding: 25px 30px;
+         width: 99vw;
+         align-items: center;
+         flex-direction: column;
+         justify-content: center;
+         opacity: 0;
+         top: 40px;
+         margin-left: ;
+         pointer-events: none;
+         transition: all 0.3s ease;
+      }
+
+
+
+      .result_box span {
+         color: red;
+         font-weight: 600;
+         font-size: 25px;
+      }
+
+
+      .result_box .buttons button {
+         margin: 0 10px;
+         height: 45px;
+         padding: 0 15px;
+         font-size: 16px;
+         font-weight: 500;
+         cursor: pointer;
+         background: #fff;
+         border: none;
+         outline: none;
+         border-radius: 5px;
+         transition: all 0.3s ease;
+      }
+
+
+      .buttons {
+         display: flex;
+         margin-top: 50px;
+      }
+
+
+      .startbutton {
+         color: black;
+         background: white;
+         border: none;
+
+      }
+      
+      
+      
+      
+   </style>
+
+
+
+   <style>
+      input,
+      textarea,
+      button,
+      select,
+      a {
+         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+
+      a:focus,
+      a:visited,
+      a:active {
+         outline: none;
+      }
+
+      * {
+         -webkit-tap-highlight-color: transparent;
+      }
+
+
+
+
+      /* Dark mode styles */
+      .dark-mode body {
+         background: black;
+         color: #fff;
+         background: #1e1e1e;
+         background-color: #121212;
+         color: #e0e0e0;
+         color: #fff;
+         background: #000;
+
+      }
+
+
+
+      .dark-mode .option_list .option {
+         background: black;
+         border: 0.6px dashed silver;
+         box-shadow: none;
+         padding: 0.97em;
+
+         cursor: pointer;
+
+         background-color: #333;
+         color: #fff;
+         border: none;
+         border-radius: 8px;
+         transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+         background-color: #141414;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+         color: #e0e0e0;
+
+
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      }
+
+
+      .dark-mode .startbutton {
+         background: #333;
+
+         color: white;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+      }
+
+      .dark-mode #dark-mode-toggle {
+         background: black;
+         box-shadow: none;
+         color: white;
+      }
+
+
+
+      .dark-mode .quiz_box header {
+
+         background-color: #181818;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+
+
+
+      }
+
+
+
+
+
+      .dark-mode .quiz_box header .timer {
+         color: white;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+         background: #191919;
+         border: none;
+      }
+
+      .dark-mode footer button {
+         background: #202020;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+         border: none;
+         background: #232323;
+      }
+
+
+      .dark-mode .buttons button {
+         color: white;
+         background: #000;
+         border: None;
+         box-shadow: none;
+
+      }
+
+      .dark-mode .quit {
+         background: #262626 !important;
+      }
+
+
+
+
+      .shift_text {
+         margin-top: 10px;
+         text-align: right;
+         color: red;
+         font-size: 13px;
+      }
+
+
+      .hidden {
+         display: none;
+
+      }
+   </style>
+
+
+   <style>
+      .hinttt_text {
+         font-size: 15px;
+         color: deepskyblue;
+         font-weight: 400;
+         margin-top: 3px;
+      }
+
+
+
+
+      /* Styling for the "Time is out" badge */
+      .timeout-badge {
+         color: red;
+         font-size: 14px;
+         font-weight: 400;
+      }
+
+
+
+      .review-options {
+         position: absolute;
+         margin-top: 50px;
+         z-index: 1;
+         border-radius: 10px;
+         background: white;
+      }
+
+
+      .dark-mode .review-options {
+         background: #262626;
+      }
+
+      section {
+         max-height: 70vh;
+         overflow-y: auto;
+      }
+
+      .quesNum {
+         font-size: 27px;
+         color: red;
+         font-weight: bold;
+      }
+   </style>
+
+   <style>
+      .floating-box {
+         margin-left: 10px;
+         padding: 15px;
+         background-color: white;
+         border-radius: 12px;
+         display: none;
+         opacity: 0;
+         pointer-events: none;
+         display: flex;
+         position: absolute;
+         justify-content: space-around;
+         right: 10px;
+         top: 39px;
+         flex-flow: row wrap;
+         transform: translateY(-10px);
+         transition: opacity 0.4s ease, transform 0.4s ease;
+         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+         z-index: 10;
+      }
+
+      .floating-box.show {
+         display: block;
+         pointer-events: auto;
+         opacity: 1;
+         transform: translateY(10px);
+      }
+
+      .dark-mode .theme-btn {
+         box-shadow: none;
+      }
+
+
+      .theme-btn,
+      .box {
+         padding: 8px 12px;
+         cursor: pointer;
+         border: none;
+         outline: none;
+
+         margin: 5px 5px;
+         border-radius: 8px;
+         font-size: 14px;
+         background-color: #f1f1f1;
+         transition: background-color 0.3s ease;
+      }
+
+
+
+      .dark-mode .box {
+
+         background: #222;
+         color: #fff;
+      }
+
+
+
+      .dark-mode .floating-box {
+         background: #000;
+         border: 1px solid gray;
+      }
+
+      .box {
+         position: absolute;
+         right: 10px;
+         top: 2px;
+         background: #fff;
+         z-index: 20;
+      }
+
+      .dark-mode .theme-btn {
+         background: #222;
+         color: #fff;
+      }
+
+
+
+
+      input {
+         width: 5%;
+         padding: 10px;
+         outline: none;
+         background: transparent;
+         margin-top: 10px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+         box-sizing: border-box;
+         transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      input:focus {
+         border-color: #2196F3;
+         box-shadow: 0 0 5px rgba(33, 150, 243, 0.7);
+      }
+
+      .dark-mode input {
+         color: white;
+      }
+      
+      
+      
+      #svg{
+         position: absolute;
+         z-index: 1000000;
+left: -70px;
+width: 500px;
+overflow: hidden;
+      }
+   </style>
+
+
+
+
+</head>
+
+<body>
+<div id="svg"></div>
+
+   <!-- Main box -->
+   <div class="box" id="themeBox" onclick="toggleFloatingBox()">Light</div>
+
+   <!-- Floating theme switcher -->
+   <div class="floating-box" id="floatingBox">
+      <button class="theme-btn" onclick="setTheme('' , 'Light')">Light</button>
+      <button class="theme-btn" onclick="setTheme('dark-mode', 'Dark')">Dark</button>
+   </div>
+
+
+
+   <div class="start_btn"><button class="startbutton">Start Quiz</button>
+
+      <br><br>
+      <input type="number" id="maxQuestionsInput" placeholder="Enter max number of questions" />
+
+
+
+   </div>
+
+   <div class="quiz_box">
+      <br>
+
+
+      <br>
+      <header>
+         <div class="title">Longitude....</div>
+         <div class="score_text hidden">
+            <!-- Here I've inserted Score Result from JavaScript -->
+         </div>
+         <div class="timer">
+            <div class="time_left_txt">Time Left</div>
+            <div class="timer_sec">15</div>
+         </div>
+         <div class="time_line"></div>
+         
+      </header>
+
+
+      <section>
+         
+         <div class="que_text">
+            <!-- Here I've inserted question from JavaScript -->
+         </div>
+         <div class="hinttt_text"></div> <!-- For the hints section -->
+
+         <div class="shift_text">
+            <br>
+            <!-- Here I've inserted shift from JavaScript -->
+         </div>
+         
+         <div class="option_list">
+            
+            <!-- Here I've inserted options from JavaScript -->
+         </div>
+
+
+
+
+      </section>
+
+      <!-- footer of Quiz Box -->
+      <footer>
+         <div class="total_que">
+            <!-- Here I've inserted Question Count Number from JavaScript -->
+         </div>
+
+
+         <button style="   z-index: 9898100000000000000;" class="next_btn">Next ➜</button>
+
+
+
+
+      </footer>
+   </div>
+
+   <!-- Result Box -->
+   <div class="result_box">
+      <div class="icon">
+
+      </div>
+      <div class="complete_text"> You've completed the Quiz!</div>
+      <div class="score_text">
+         <!-- Here I've inserted Score Result from JavaScript -->
+      </div>
+      <div class="buttons">
+
+         <button class="review_btn" onclick="toggleReviewOptions()" style="background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Review</button>
+
+         <!-- Dropdown menu with options -->
+         <div id="reviewOptions" class="review-options" style="display:none; opacity: 0; transition: opacity 0.5s;">
+            <button class="option-btn" onclick="handleReviewOption('all')">All</button>
+            <button class="option-btn" onclick="handleReviewOption('timedOut')">Timed Out</button>
+            <button class="option-btn" onclick="handleReviewOption('incorrect')">Incorrect</button>
+         </div>
+
+         <br>
+         <button class="quit">Quit Quiz</button>
+      </div>
+   </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
+
+
+   <script>
+      const floatingBox = document.getElementById('floatingBox');
+      const themeBox = document.getElementById('themeBox');
+
+      // Toggle the floating box visibility
+      function toggleFloatingBox() {
+         if (floatingBox.classList.contains('show')) {
+            closeFloatingBox();
+         } else {
+            openFloatingBox();
+         }
+      }
+
+      // Open the floating box with animation
+      function openFloatingBox() {
+         floatingBox.classList.add('show');
+      }
+
+      // Close the floating box with animation
+      function closeFloatingBox() {
+         floatingBox.classList.remove('show');
+      }
+
+      // Set the theme and update the box content
+      function setTheme(theme, themeName) {
+         document.documentElement.className = theme; // Apply theme to the document
+         themeBox.textContent = themeName; // Update box content
+         closeFloatingBox(); // Hide floating box after selection
+      }
+
+      // Set the default theme on page load (e.g., dark mode)
+      window.onload = function() {
+         setTheme('dark-mode', 'Dark'); // Provide both theme class and name
+      }
+
+      // Click outside to close the floating box
+      window.onclick = function(event) {
+         if (!themeBox.contains(event.target) && !floatingBox.contains(event.target)) {
+            closeFloatingBox();
+         }
+      };
+   </script>
+
+
+
+
+
+   <script>
+      let AllQuestions = [
+
+         {
+            "question": "Exfoliation is a form of _________.",
+            "HindiQue": "एग्ज़फोलिएशन _________ का एक रूप है।",
+            "answer": "Physical weathering / शारीरिक अपक्षय",
+            "options": [
+      "Chemical weathering / रासायनिक अपक्षय",
+      "Mass wasting / बड़े पैमाने पर बर्बादी",
+      "Biochemical weathering / जैव रासायनिक अपक्षय",
+      "Physical weathering / शारीरिक अपक्षय"
+    ],
+
+  },
+         {
+            "question": "The record obtained by the measurement of earthquake is called a:",
+            "HindiQue": "भूकंप के माप से प्राप्त रिकॉर्ड को क्या कहा जाता है?",
+            "answer": "Seismogram / सीस्मोग्राम",
+            "options": [
+      "Seismology / भूकंप विज्ञान",
+      "Seismogram / सीस्मोग्राम",
+      "Seismograph / भूकंपमापी",
+      "Seismic wave / भूकंपीय तरंग"
+    ],
+
+  },
+         {
+            "question": "Which of the following is the largest crustal plate on Earth with an area of over 103,000,000 km²?",
+            "HindiQue": "निम्नलिखित में से कौन सी पृथ्वी पर 103,000,000 वर्ग किलोमीटर से अधिक क्षेत्रफल वाली सबसे बड़ी क्रस्टल प्लेट है?",
+            "answer": "Pacific plate / प्रशांत प्लेट",
+            "options": [
+      "African plate / अफ्रीकी प्लेट",
+      "South American plate / दक्षिण अमेरिकी प्लेट",
+      "Eurasian plate / यूरेशियन प्लेट",
+      "Pacific plate / प्रशांत प्लेट"
+    ],
+
+  },
+         {
+            "question": "What kind of depositional landforms are formed when streams flowing from higher levels break into foot slope plains of low gradient?",
+            "HindiQue": "जब ऊँचे स्तरों से बहने वाली धाराएँ निचले ढलान के मैदानी क्षेत्रों में प्रवेश करती हैं, तो किस प्रकार की निक्षेपण स्थलाकृतियाँ बनती हैं?",
+            "answer": "Alluvial fans / जलोढ़ पंखे",
+            "options": [
+      "Point bars / पॉइंट बार",
+      "Flood plains / बाढ़ के मैदान",
+      "Alluvial fans / जलोढ़ पंखे",
+      "Natural levees / प्राकृतिक तटबंध"
+    ],
+            "shift": "SSC CHSL 19/10/2020 (Morning)"
+  },
+
+         {
+            "question": "Which of the following is NOT a characteristic feature of a glacier?",
+            "HindiQue": "निम्नलिखित में से कौन सी हिमनदी की एक विशिष्ट विशेषता नहीं है?",
+            "answer": "Braided streams / चोटीदार धाराएँ",
+            "options": [
+            "Crevasses / दरारें",
+            "Moraines / मोराइन",
+            "Icebergs / हिमखंड",
+            "Braided streams / चोटीदार धाराएँ"
+        ],
+    },
+         {
+            "question": "Which of the following terms refers to the process by which rocks break down without changing their chemical composition?",
+            "HindiQue": "निम्नलिखित में से कौन सा शब्द उस प्रक्रिया को संदर्भित करता है जिसके द्वारा चट्टानें टूटती हैं, लेकिन उनकी रासायनिक संरचना नहीं बदलती?",
+            "answer": "Mechanical weathering / यांत्रिक अपक्षय",
+            "options": [
+            "Chemical weathering / रासायनिक अपक्षय",
+            "Mechanical weathering / यांत्रिक अपक्षय",
+            "Biological weathering / जैविक अपक्षय",
+            "Hydrolysis / जल अपघटन"
+        ],
+    }
+];
+
+      let questions = []; // Declare questions globally
+
+      document.getElementById('maxQuestionsInput').addEventListener('input', function() {
+         let maxQuestionsInput = this.value;
+         let maxQuestions;
+
+         // If the input is empty, push all questions
+         if (!maxQuestionsInput) {
+            questions = [...AllQuestions]; // Push all questions
+         } else {
+            maxQuestions = parseInt(maxQuestionsInput);
+            // Validate the input
+            if (isNaN(maxQuestions) || maxQuestions <= 0) {
+               questions = []; // Clear questions array if input is invalid
+               console.log("Please enter a valid number greater than 0.");
+               return;
+            }
+
+            // Ensure maxQuestions does not exceed AllQuestions length
+            if (maxQuestions > AllQuestions.length) {
+               questions = []; // Clear questions array if too large
+               console.log("Please enter a number less than or equal to " + AllQuestions.length);
+               return;
+            }
+
+            // Clear the questions array before populating it
+            questions = [];
+
+            // Select random questions if maxQuestions is less than AllQuestions length
+            let selectedIndices = new Set();
+            while (selectedIndices.size < maxQuestions) {
+               let randomIndex = Math.floor(Math.random() * AllQuestions.length);
+               selectedIndices.add(randomIndex);
+            }
+
+            selectedIndices.forEach(index => {
+               questions.push(AllQuestions[index]);
+            });
+         }
+
+         console.log(questions); // Log the selected questions
+      });
+   </script>
+
+   <script>
+      //selecting all required elements
+      const start_btn = document.querySelector(".start_btn button");
+   const svgContainer = document.getElementById("svg");
+
+
+      const quiz_box = document.querySelector(".quiz_box");
+
+      const result_box = document.querySelector(".result_box");
+
+      const option_list = document.querySelector(".option_list");
+
+      const time_line = document.querySelector("header .time_line");
+
+      const timeText = document.querySelector(".timer .time_left_txt");
+
+      const timeCount = document.querySelector(".timer .timer_sec");
+
+
+
+
+
+
+
+
+
+      // if startQuiz button clicked
+
+      start_btn.onclick = () => {
+
+         quiz_box.classList.add("activeQuiz"); //show quiz box
+         startTimer(25); //calling startTimer function
+
+         showQuetions(0); //calling showQestions function
+
+         queCounter(1); //passing 1 parameter to queCounter
+         startTimerLine(0); //calling startTimerLine function
+
+         start_btn.style.display = "none";
+
+
+
+         // Replace 'your-class-name' with the class you want to hide
+         const elements = document.querySelectorAll('.start_btn');
+
+         elements.forEach(element => {
+            element.style.display = 'none';
+         });
+
+
+
+
+      };
+
+
+
+
+
+      let timeValue = 10;
+      let que_count = 0;
+      let que_numb = 1;
+      let userScore = 0;
+      let counter;
+      let counterLine;
+      let widthValue = 0;
+
+
+      const quit_quiz = result_box.querySelector(".buttons .quit");
+
+
+
+
+
+
+
+
+
+      // if quitQuiz button clicked
+      quit_quiz.onclick = () => {
+         if (confirm('Do you want to replay the quiz? \n\nYou can see review of all questions')) {
+            location.reload(); // Reload the current window
+         }
+
+
+      };
+
+
+
+
+
+      const next_btn = document.querySelector("footer .next_btn");
+
+
+      const bottom_ques_counter = document.querySelector("footer .total_que");
+
+
+
+
+
+      next_btn.onclick = () => {
+         if (que_count < questions.length - 1) {
+            que_count++;
+            que_numb++;
+            showQuetions(que_count);
+            queCounter(que_numb);
+            clearInterval(counter);
+            clearInterval(counterLine);
+            startTimer(timeValue);
+            startTimerLine(widthValue);
+            timeText.textContent = "Time Left";
+            next_btn.classList.remove("show");
+
+      svgContainer.innerHTML = ""; // Clear previous animation (optional)
+
+
+
+            // Check if it's the last question
+            if (que_count === questions.length - 1) {
+               next_btn.textContent = "Finish"; // Change text to "Finish" when last question is reached
+            }
+
+
+
+         } else {
+            clearInterval(counter); //clear counter
+            clearInterval(counterLine); //clear counterLine
+            showResult(); //calling showResult function
+         }
+      };
+
+
+
+
+
+
+      function showQuetions(index) {
+         const que_text = document.querySelector(".que_text");
+         const shift_text = document.querySelector(".shift_text");
+         const hinttt_text = document.querySelector(".hinttt_text"); // New hint section
+
+         // Update to include the question number and the question text
+         let que_tag = '<span class="quesNum">' + (index + 1) + '</span>. ' + questions[index].question + '</span>';
+
+         // Get the shift text, or set it as an empty string if it doesn't exist
+         let shift_tag = questions[index].shift ? questions[index].shift : "";
+
+         // Create the options HTML
+         let option_tag =
+            '<div class="option"><span>' + questions[index].options[0] + '</span></div>' +
+            '<div class="option"><span>' + questions[index].options[1] + '</span></div>' +
+            '<div class="option"><span>' + questions[index].options[2] + '</span></div>' +
+            '<div class="option"><span>' + questions[index].options[3] + '</span></div>';
+
+         // Get the hint or set it as an empty string if it doesn't exist
+         let HindiQue_tag = questions[index].HindiQue ? questions[index].HindiQue : "";
+
+         // Set the innerHTML for question, shift, options, and hint
+         que_text.innerHTML = que_tag;
+         shift_text.innerHTML = shift_tag; // This will be an empty string if no shift exists
+         option_list.innerHTML = option_tag;
+         hinttt_text.innerHTML = HindiQue_tag; // This will display the hint if it exists
+
+         // Set onclick attribute to all available options
+         const option = option_list.querySelectorAll(".option");
+         for (let i = 0; i < option.length; i++) {
+            option[i].setAttribute("onclick", "optionSelected(this)");
+         }
+      }
+
+
+      // creating the new div tags which for icons
+      let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
+      let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+
+
+
+
+      // Global variables
+      let currentIndex = 0; // To keep track of the current question index
+
+      // Function to initialize quiz
+      function initializeQuiz() {
+         shuffleQuestions(); // Shuffle the questions array initially (optional)
+         showQuestions();
+      }
+
+
+
+
+
+      // Function to shuffle questions array (optional)
+      function shuffleQuestions() {
+         for (let i = questions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+            // Shuffle options within each question
+            questions[i].options = shuffleArray(questions[i].options);
+         }
+      }
+
+
+      // Function to shuffle array (Fisher-Yates shuffle algorithm)
+      function shuffleArray(array) {
+         let shuffledArray = array.slice(); // Create a copy of the array
+         for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+         }
+         return shuffledArray; // Return shuffled array
+      }
+
+
+
+
+      // Function to handle option selection
+      function optionSelected(answer) {
+         clearInterval(counter); // Clear any ongoing timers
+         clearInterval(counterLine); // Clear any progress bar
+
+         let userAns = answer.textContent.trim(); // Get user selected option
+         let correctAns = questions[currentIndex].answer.trim(); // Get correct answer
+
+
+         // Increment index for the next question
+         currentIndex++;
+      }
+
+
+
+
+
+      // Example usage:
+      initializeQuiz(); // Call this function to start the quiz
+
+
+
+
+      function showResult() {
+         quiz_box.classList.remove("activeQuiz"); //hide quiz box
+         result_box.classList.add("activeResult"); //show result box
+         const scoreText = result_box.querySelector(".score_text");
+
+
+
+
+         // Creating a new span tag and passing the user score number and total question number
+         let scoreTag =
+            "<p> You got <span>" + userScore + " </span> out of <span> " + questions.length + "</span</p>";
+         scoreText.innerHTML = scoreTag; // Adding new span tag inside scoreText
+      }
+
+
+      function startTimerLine() {
+         const totalTime = timeValue * 1000 / 20; // Total number of intervals (20ms each)
+         let time = 0; // Initialize time
+
+         counterLine = setInterval(timer, 20); // Call timer every 20ms
+
+         function timer() {
+            time += 1; // Increment time value by 1 (20ms)
+
+            // Set the width based on the time relative to totalTime
+            time_line.style.width = (time / totalTime) * 93.5 + "vw";
+
+            // Clear the interval when the time exceeds the totalTime
+            if (time >= totalTime) {
+               clearInterval(counterLine); // Stop the timer
+            }
+         }
+      }
+
+
+
+
+
+      function queCounter(index) {
+         //creating a new span tag and passing the question number and total question
+         let totalQueCounTag =
+            "<span><p>" + index + "</p> of <p>" + questions.length + "</p> Questions</span>";
+
+         bottom_ques_counter.innerHTML = totalQueCounTag; //adding new span tag inside bottom_ques_counter
+      }
+   </script>
+
+
+
+
+
+
+
+   <script>
+      // Arrays for separate storage of correct, incorrect, and timed-out questions
+      let correctQuestions = [];
+      let incorrectQuestions = [];
+      let timedOutQuestions = [];
+
+      // Combine them later into this array for review
+      let answeredQuestions = [];
+
+      function showReviewQuestions() {
+         const timeline = document.querySelector(".time_line");
+         if (timeline) {
+            timeline.style.display = "none"; // Hide the timeline
+         }
+
+         const timeLeftText = document.querySelector(".timer");
+         if (timeLeftText) {
+            timeLeftText.style.display = "none"; // Hide the timer
+         }
+
+         que_count = 0; // Start from the first question
+         quiz_box.classList.add("activeQuiz"); // Show quiz box for review
+         result_box.classList.remove("activeResult"); // Hide result box
+
+         // Combine all questions into answeredQuestions array for review
+         combineAnsweredQuestions();
+
+         showAnsweredQuestion(que_count); // Show the first answered question
+      }
+
+      function optionSelected(answer) {
+         clearInterval(counter); // Clear any ongoing timers
+         clearInterval(counterLine); // Clear any progress bar
+
+         let userAns = answer.textContent.trim(); // Get user selected option
+         let correctAns = questions[que_count].answer.trim(); // Get correct answer from array
+         const allOptions = option_list.children.length; // Get all option items
+
+         let isCorrect = userAns === correctAns; // Check if the answer is correct
+
+         // Store into the correct or incorrect array based on the user's answer
+        if (isCorrect) {
+           correctQuestions.push({
+              questionIndex: que_count,
+              question: questions[que_count].question,
+              userAnswer: userAns,
+              correctAnswer: correctAns,
+              correct: true
+           });
+           userScore += 1; // Increase score
+           // Assume 'answer' is a reference to the selected answer element
+           answer.classList.add("correct");
+           answer.insertAdjacentHTML("beforeend", tickIconTag);
+      
+           // Trigger the animation
+           playAnimation();
+        }
+        else {
+            incorrectQuestions.push({
+               questionIndex: que_count, // Store original question order
+               question: questions[que_count].question,
+               userAnswer: userAns,
+               correctAnswer: correctAns,
+               correct: false
+            });
+            answer.classList.add("incorrect"); // Add incorrect class
+            answer.insertAdjacentHTML("beforeend", crossIconTag); // Add cross icon
+
+            // Highlight the correct answer
+            for (let i = 0; i < allOptions; i++) {
+               if (option_list.children[i].textContent.trim() === correctAns) {
+                  option_list.children[i].classList.add("correct");
+                  option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag);
+               }
+            }
+         }
+
+         // Disable all options after selection
+         for (let i = 0; i < allOptions; i++) {
+            option_list.children[i].classList.add("disabled");
+         }
+
+         next_btn.classList.add("show");
+      }
+
+
+function playAnimation() {
+   svgContainer.style.display = "block"; // Show the SVG
+
+   const animItem = lottie.loadAnimation({
+      container: svgContainer,
+      renderer: "svg",
+      loop: false,
+      autoplay: true,
+      path: "https://assets2.lottiefiles.com/packages/lf20_u4yrau.json"
+   });
+
+   // Hide the SVG after the animation completes
+   animItem.addEventListener('complete', () => {
+      svgContainer.style.display = "none"; // Hide the SVG
+      svgContainer.innerHTML = ""; // Clear previous animation (optional)
+   });
+}
+      function startTimer(time) {
+         timeCount.textContent = time; // Set the initial time display immediately
+         counter = setInterval(timer, 1000);
+
+         function timer() {
+            time--; // Decrement the time value
+            if (time >= 0) {
+               timeCount.textContent = time < 10 ? `0${time}` : time; // Format time with leading zero if needed
+            }
+            if (time < 0) {
+               clearInterval(counter); // Clear timer
+               timeText.textContent = "Time Off"; // Update time text
+
+               const allOptions = option_list.children.length; // Get all option items
+               let correctAns = questions[que_count].answer; // Get correct answer from array
+
+               // Disable all options since time is out
+               for (let i = 0; i < allOptions; i++) {
+                  option_list.children[i].classList.add("disabled");
+               }
+
+               // Highlight the correct answer after time runs out
+               for (let i = 0; i < allOptions; i++) {
+                  if (option_list.children[i].textContent.trim() === correctAns) {
+                     option_list.children[i].classList.add("correct"); // Add correct class
+                     option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); // Add tick icon
+                  }
+               }
+
+               // Show the "Time is out" badge instantly
+               const que_text = document.querySelector(".que_text");
+               const badge_tag = '<div class="badge timeout-badge">Time is out</div>';
+               que_text.innerHTML = badge_tag + que_text.innerHTML; // Prepend badge to question
+
+               // Add to timed-out questions array
+               timedOutQuestions.push({
+                  questionIndex: que_count, // Store original question order
+                  question: questions[que_count].question,
+                  userAnswer: "Time Out",
+                  correctAnswer: correctAns,
+                  correct: false
+               });
+
+               next_btn.classList.add("show");
+            }
+         }
+      }
+
+      function showAnsweredQuestion(index) {
+         if (index < 0 || index >= answeredQuestions.length) {
+            console.error("Invalid question index.");
+            return;
+         }
+
+         const que_text = document.querySelector(".que_text");
+         const shift_text = document.querySelector(".shift_text");
+         const option_list = document.querySelector(".option_list");
+         const hinttt_text = document.querySelector(".hinttt_text"); // New hinttt section
+
+         const question = questions.find(q => q.question === answeredQuestions[index].question);
+
+         if (!question) {
+            console.error("Question not found.");
+            return;
+         }
+
+         const userAnswer = answeredQuestions[index].userAnswer;
+         const correctAnswer = answeredQuestions[index].correctAnswer;
+
+         // Create the question tag (agar Q+no chahiye to Q bhr q ${answer question index})
+         let que_tag = `<span><span class="quesNum">${answeredQuestions[index].questionIndex + 1}.</span> ${answeredQuestions[index].question}</span>`;
+
+         // Create badge if timed out
+         let badge_tag = '';
+         if (userAnswer === "Time Out") {
+            badge_tag = `<div class="badge timeout-badge">Time out question</div>`;
+         }
+
+         // Handle correct/incorrect options display
+         let option_tags = question.options.map(option => {
+            let className = '';
+            let iconTag = '';
+
+            if (option === correctAnswer) {
+               className = 'correct';
+               iconTag = tickIconTag; // Insert tick icon for the correct answer
+            } else if (option === userAnswer && userAnswer !== "Time Out") {
+               className = 'incorrect';
+               iconTag = crossIconTag; // Insert cross icon for wrong answer
+            }
+            return `<div class="option ${className}"><span>${option}</span>${iconTag}</div>`;
+         }).join('');
+
+         // Insert the badge and question into que_text
+         que_text.innerHTML = badge_tag + que_tag; // Prepend badge if it exists
+         shift_text.innerHTML = question.shift || ""; // Handle shift text if exists
+         option_list.innerHTML = option_tags;
+
+         // Insert the hint into hinttt_text
+         hinttt_text.innerHTML = question.HindiQue || ""; // Handle hint text if exists
+
+         // Update the next button to move through questions
+         next_btn.onclick = () => {
+            if (index < answeredQuestions.length - 1) {
+               showAnsweredQuestion(index + 1); // Show the next question
+            } else {
+               result_box.classList.add("activeResult"); // Show result box again after review
+               quiz_box.classList.remove("activeQuiz"); // Hide quiz box
+            }
+         };
+
+         next_btn.classList.add("show");
+      }
+
+      // Function to combine all questions (correct, incorrect, timed-out) into answeredQuestions array
+      function combineAnsweredQuestions() {
+         answeredQuestions = [
+      ...correctQuestions,
+      ...incorrectQuestions,
+      ...timedOutQuestions
+    ];
+
+         // Sort by questionIndex to maintain the original quiz order
+         answeredQuestions.sort((a, b) => a.questionIndex - b.questionIndex);
+      }
+   </script>
+   <script>
+      function styleButtons() {
+         const buttons = document.querySelectorAll('.option-btn');
+         buttons.forEach(button => {
+            button.style.width = 'auto'; // White text
+
+            button.style.border = 'none'; // No border
+            button.style.padding = '10px 15px'; // Padding
+            button.style.margin = '8px'; // Margin
+            button.style.cursor = 'pointer'; // Pointer cursor
+            button.style.borderRadius = '5px'; // Rounded corners
+
+         });
+      }
+
+
+
+      function toggleReviewOptions() {
+         const reviewOptions = document.getElementById('reviewOptions');
+         const isVisible = reviewOptions.style.display === 'block';
+
+         // Set initial state for animation
+         reviewOptions.style.transition = 'opacity 0.5s';
+         reviewOptions.style.opacity = isVisible ? '0' : '1';
+
+         // Use a timeout to wait for the animation to finish before changing display
+         setTimeout(() => {
+            reviewOptions.style.display = isVisible ? 'none' : 'block';
+            if (!isVisible) styleButtons(); // Style buttons only when showing
+         }, 500);
+
+         // Calculate counts
+         const totalCorrect = correctQuestions.length;
+         const totalIncorrect = incorrectQuestions.length;
+         const totalTimedOut = timedOutQuestions.length;
+         const totalQuestions = totalCorrect + totalIncorrect + totalTimedOut;
+
+         // Update button text with counts
+         reviewOptions.querySelector("button[onclick=\"handleReviewOption('all')\"]").innerText = `All (${totalQuestions})`;
+
+         // Update and show/hide timed out button
+         const timedOutButton = reviewOptions.querySelector("button[onclick=\"handleReviewOption('timedOut')\"]");
+         if (totalTimedOut > 0) {
+            timedOutButton.innerText = `Timed Out (${totalTimedOut})`;
+            timedOutButton.style.display = 'block';
+         } else {
+            timedOutButton.style.display = 'none';
+         }
+
+         // Update and show/hide incorrect button
+         const incorrectButton = reviewOptions.querySelector("button[onclick=\"handleReviewOption('incorrect')\"]");
+         if (totalIncorrect > 0) {
+            incorrectButton.innerText = `Incorrect (${totalIncorrect})`;
+            incorrectButton.style.display = 'block';
+         } else {
+            incorrectButton.style.display = 'none';
+         }
+      }
+
+      // Function to handle the selected review option
+      function handleReviewOption(option) {
+         // Hide the dropdown after selecting an option
+         const reviewOptions = document.getElementById('reviewOptions');
+         reviewOptions.style.opacity = '0';
+         reviewOptions.style.transition = 'opacity 0.5s';
+
+         // Use a timeout to wait for the animation to finish before changing display
+         setTimeout(() => {
+            reviewOptions.style.display = 'none';
+         }, 500);
+
+         // Determine which questions to show based on the selected option
+         combineAnsweredQuestions(option);
+
+         // Show review questions
+         showReviewQuestions();
+      }
+
+      // Modified function to combine answered questions based on selected option
+      function combineAnsweredQuestions(filter) {
+         if (filter === 'all') {
+            answeredQuestions = [
+        ...correctQuestions,
+        ...incorrectQuestions,
+        ...timedOutQuestions
+      ];
+         } else if (filter === 'timedOut') {
+            answeredQuestions = [
+        ...timedOutQuestions
+      ];
+         } else if (filter === 'incorrect') {
+            answeredQuestions = [
+        ...incorrectQuestions,
+        ...timedOutQuestions
+      ];
+         }
+
+         // Sort by questionIndex to maintain the original quiz order
+         answeredQuestions.sort((a, b) => a.questionIndex - b.questionIndex);
+      }
+
+      function showReviewQuestions() {
+         // Hide the timeline and timer
+         const timeline = document.querySelector(".time_line");
+         if (timeline) {
+            timeline.style.display = "none"; // Hide the timeline
+         }
+
+         const timeLeftText = document.querySelector(".timer");
+         if (timeLeftText) {
+            timeLeftText.style.display = "none"; // Hide the timer
+         }
+
+         que_count = 0; // Start from the first question
+         quiz_box.classList.add("activeQuiz"); // Show quiz box for review
+         result_box.classList.remove("activeResult"); // Hide result box
+
+         showAnsweredQuestion(que_count); // Show the first answered question
+
+
+         // Target the footer
+         const footer = document.querySelector("footer");
+
+         // Clear the existing content in the footer
+         footer.innerHTML = "";
+         footer.style.justifyContent = 'space-around';
+
+         // Create "Back" button
+         const backButton = document.createElement("button");
+         backButton.textContent = "Back";
+         backButton.className = "back_btn";
+         backButton.style.display = "block"; // Ensure the button is displayed
+         backButton.style.opacity = que_count === 0 ? "0" : "1"; // Set opacity based on question count
+         backButton.addEventListener("click", function() {
+            if (que_count > 0) {
+               que_count--; // Decrement the question count
+               showAnsweredQuestion(que_count); // Show the previous answered question
+               updateButtonVisibility(); // Update button visibility
+            } else {
+               console.log("This is the first question.");
+            }
+         });
+
+         // Create "Forward" button
+         const forwardButton = document.createElement("button");
+         forwardButton.textContent = "Next";
+         forwardButton.className = "forward_btn";
+         forwardButton.style.display = "block"; // Ensure the button is displayed
+         forwardButton.style.opacity = que_count === answeredQuestions.length - 1 ? "0" : "1"; // Set opacity based on question count
+         forwardButton.addEventListener("click", function() {
+            if (que_count < answeredQuestions.length - 1) {
+               que_count++; // Increment the question count
+               showAnsweredQuestion(que_count); // Show the next answered question
+               updateButtonVisibility(); // Update button visibility
+            } else {
+               console.log("This is the last question.");
+            }
+         });
+
+         // Create "Finish" button
+         const finishButton = document.createElement("button");
+         finishButton.textContent = "Finish";
+         finishButton.style.opacity = "1"; // Set opacity based on question count
+
+         finishButton.className = "finish_btn";
+         finishButton.style.display = "block"; // Ensure the button is displayed
+         finishButton.addEventListener("click", function() {
+            // Navigate to the result page or display the result box
+            quiz_box.classList.remove("activeQuiz");
+            result_box.classList.add("activeResult");
+         });
+
+         // Append the buttons to the footer
+         footer.appendChild(backButton);
+         footer.appendChild(finishButton);
+         footer.appendChild(forwardButton);
+
+         // Function to update button visibility based on question count
+         function updateButtonVisibility() {
+            backButton.style.opacity = que_count === 0 ? "0" : "1"; // Update Back button opacity
+            forwardButton.style.opacity = que_count === answeredQuestions.length - 1 ? "0" : "1"; // Update Forward button opacity
+         }
+
+         // Log the buttons to check if they were created
+         console.log("Buttons added to footer:", footer);
+      }
+   </script>
+
+</body>
