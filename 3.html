@@ -26,14 +26,7 @@
          font-family: "Poppins", sans-serif;
          background-color: #e0e5ec;
          width: 90%;
-         height: 85vh;
          background: #fff;
-         background: #f3f4f6;
-      }
-
-      ::selection {
-         color: #fff;
-         background: #007bff;
       }
 
 
@@ -48,10 +41,7 @@
       .start_btn {
          margin-top: 100px;
          margin-left: 30vw;
-
-
       }
-
 
 
       button {
@@ -59,7 +49,6 @@
          padding: 0.5em 1.8em;
          border-radius: 0.2em;
          box-shadow: 0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9), -0.2rem -0.2rem 0.4rem #fff;
-
       }
 
 
@@ -70,11 +59,9 @@
          opacity: 0;
          position: absolute;
          top: 4px;
-
          height: auto;
          pointer-events: none;
          transition: all 0.7s ease;
-
       }
 
 
@@ -87,7 +74,6 @@
          display: flex;
          align-items: center;
          justify-content: space-between;
-
          box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1);
       }
 
@@ -108,7 +94,6 @@
          display: flex;
          align-items: center;
          justify-content: space-between;
-
       }
 
 
@@ -117,6 +102,7 @@
          font-size: 15px;
          user-select: none;
       }
+      
 
       .quiz_box header .timer .timer_sec {
          font-size: 18px;
@@ -131,6 +117,7 @@
          user-select: none;
          margin-left: 7px;
       }
+      
 
       .quiz_box header .time_line {
          position: absolute;
@@ -143,51 +130,63 @@
          border-radius: 4px;
       }
 
+
       section {
          padding: 25px 30px 20px 30px;
       }
 
+
       section .que_text {
-         font-size: 16px;
-         line-height: 25px;
+         font-size: 17px;
+         line-height: 26px;
          font-family: Georgia, 'Times New Roman', Times, serif;
-
-
-
       }
+      
 
       section .option_list {
          padding: 20px 0px;
          display: block;
       }
 
-      section .option_list .option {
-         background: #f9fafc;
-         #007BFF border-radius: 5px;
-         padding: 10px 15px;
-         font-size: 13px;
-         margin-bottom: 15px;
-         cursor: pointer;
-         transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
 
+      section .option_list .option {
          display: flex;
          align-items: center;
          justify-content: space-between;
+         position: relative;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         border-radius: 0.56em;
+         font-size: 0.9em;
          width: 100%;
          padding: 1em;
          margin: 1.7em 0;
          text-align: left;
          outline: none;
+        font-weight:100;
+      }
 
-         position: relative;
 
-         box-shadow: 0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9),
-            -0.2rem -0.2rem 0.4rem #fff;
-         background: white;
+      .option span::before {
+         padding-right: 5px;
+      }
 
-         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-         border-radius: 0.56em;
+      .dark-mode .option span::before {}
+
+      .option:nth-child(1) span::before {
+         content: ' a)  ';
+      }
+
+      .option:nth-child(2) span::before {
+         content: ' b)  ';
+      }
+
+      .option:nth-child(3) span::before {
+         content: ' c)  ';
+      }
+
+      .option:nth-child(4) span::before {
+         content: ' d)  ';
       }
 
 
@@ -207,6 +206,7 @@
          background: #f8d7da;
       }
 
+
       section .option_list .option.disabled {
          pointer-events: none;
       }
@@ -222,24 +222,24 @@
          pointer-events: none;
          position: absolute;
          right: 15px;
-
       }
+      
 
       .option_list .option .icon.tick {
          color: #23903c;
          border-color: #23903c;
          background: #d4edda;
          padding-top: 5px;
-
       }
+
 
       .option_list .option .icon.cross {
          color: #a42834;
          background: #f8d7da;
          border-color: #a42834;
          padding-top: 5px;
-
       }
+      
 
       footer {
          height: 60px;
@@ -250,19 +250,23 @@
          border-top: 1px solid lightgrey;
       }
 
+
       footer .total_que span {
          display: flex;
          user-select: none;
       }
+
 
       footer .total_que span p {
          font-weight: 500;
          padding: 0 5px;
       }
 
+
       footer .total_que span p:first-child {
          padding-left: 0px;
       }
+
 
       footer button {
          height: 40px;
@@ -280,29 +284,27 @@
          opacity: 0;
          transform: scale(0.95);
          transition: background-color 0.3s ease, transform 0.1s ease;
-
       }
+
 
       footer button:active {
          background: #0263ca;
-
          background-color: #0056b3;
-         /* Darker shade of blue */
          transform: scale(0.85);
-         /* Slightly shrink on click */
       }
 
       .next_btn {
          pointer-events: none;
       }
+      
 
       footer button.show {
          opacity: 1;
          pointer-events: auto;
          transform: scale(1);
          z-index: 100000;
-
       }
+
 
       .result_box {
          position: absolute;
@@ -318,7 +320,6 @@
          pointer-events: none;
          transition: all 0.3s ease;
       }
-
 
 
       .result_box span {
@@ -353,8 +354,8 @@
          color: black;
          background: white;
          border: none;
-
       }
+      
    </style>
 
 
@@ -380,82 +381,45 @@
 
 
 
-
-      /* Dark mode styles */
       .dark-mode body {
-         background: black;
-         color: #fff;
-         background: #1e1e1e;
-         background-color: #121212;
-         color: #e0e0e0;
          color: #fff;
          background: #000;
-
       }
 
 
-
       .dark-mode .option_list .option {
-         background: black;
-         border: 0.6px dashed silver;
-         box-shadow: none;
-         padding: 0.97em;
-
-         cursor: pointer;
-
-         background-color: #333;
-         color: #fff;
-         border: none;
-         border-radius: 8px;
          transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-
          background-color: #141414;
-         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-         color: #e0e0e0;
-
-
          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
       }
 
 
       .dark-mode .startbutton {
          background: #333;
-
          color: white;
          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-
       }
+
 
       .dark-mode #dark-mode-toggle {
          background: black;
          box-shadow: none;
-         color: white;
       }
-
 
 
       .dark-mode .quiz_box header {
-
          background-color: #181818;
          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-
-
-
       }
-
-
-
 
 
       .dark-mode .quiz_box header .timer {
-         color: white;
          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-
+         color: #fff;
          background: #191919;
          border: none;
       }
+
 
       .dark-mode footer button {
          background: #202020;
@@ -466,18 +430,16 @@
 
 
       .dark-mode .buttons button {
-         color: white;
          background: #000;
          border: None;
+         color: #fff;
          box-shadow: none;
-
       }
+
 
       .dark-mode .quit {
          background: #262626 !important;
       }
-
-
 
 
       .shift_text {
@@ -490,8 +452,8 @@
 
       .hidden {
          display: none;
-
       }
+      
    </style>
 
 
@@ -504,15 +466,11 @@
       }
 
 
-
-
-      /* Styling for the "Time is out" badge */
       .timeout-badge {
          color: red;
          font-size: 14px;
          font-weight: 400;
       }
-
 
 
       .review-options {
@@ -527,6 +485,7 @@
       .dark-mode .review-options {
          background: #262626;
       }
+      
 
       section {
          max-height: 70vh;
@@ -538,6 +497,7 @@
          color: red;
          font-weight: bold;
       }
+      
    </style>
 
    <style>
@@ -787,73 +747,72 @@
 
 
 
-  <script>
-    let questions = [
-      {
-    "question": "Exfoliation is a form of _________.",
-    "HindiQue": "एग्ज़फोलिएशन _________ का एक रूप है।",
-    "answer": "Physical weathering / शारीरिक अपक्षय",
-    "options": [
+   <script>
+      let questions = [
+         {
+            "question": "Exfoliation is a form of _________.",
+            "HindiQue": "एग्ज़फोलिएशन _________ का एक रूप है।",
+            "answer": "Physical weathering / शारीरिक अपक्षय",
+            "options": [
       "Chemical weathering / रासायनिक अपक्षय",
       "Mass wasting / बड़े पैमाने पर बर्बादी",
       "Biochemical weathering / जैव रासायनिक अपक्षय",
       "Physical weathering / शारीरिक अपक्षय"
     ],
-    
+
   },
-  {
-    "question": "The record obtained by the measurement of earthquake is called a:",
-    "HindiQue": "भूकंप के माप से प्राप्त रिकॉर्ड को क्या कहा जाता है?",
-    "answer": "Seismogram / सीस्मोग्राम",
-    "options": [
+         {
+            "question": "The record obtained by the measurement of earthquake is called a:",
+            "HindiQue": "भूकंप के माप से प्राप्त रिकॉर्ड को क्या कहा जाता है?",
+            "answer": "Seismogram / सीस्मोग्राम",
+            "options": [
       "Seismology / भूकंप विज्ञान",
       "Seismogram / सीस्मोग्राम",
       "Seismograph / भूकंपमापी",
       "Seismic wave / भूकंपीय तरंग"
     ],
-    
+
   },
-  {
-    "question": "Which of the following is the largest crustal plate on Earth with an area of over 103,000,000 km²?",
-    "HindiQue": "निम्नलिखित में से कौन सी पृथ्वी पर 103,000,000 वर्ग किलोमीटर से अधिक क्षेत्रफल वाली सबसे बड़ी क्रस्टल प्लेट है?",
-    "answer": "Pacific plate / प्रशांत प्लेट",
-    "options": [
+         {
+            "question": "Which of the following is the largest crustal plate on Earth with an area of over 103,000,000 km²?",
+            "HindiQue": "निम्नलिखित में से कौन सी पृथ्वी पर 103,000,000 वर्ग किलोमीटर से अधिक क्षेत्रफल वाली सबसे बड़ी क्रस्टल प्लेट है?",
+            "answer": "Pacific plate / प्रशांत प्लेट",
+            "options": [
       "African plate / अफ्रीकी प्लेट",
       "South American plate / दक्षिण अमेरिकी प्लेट",
       "Eurasian plate / यूरेशियन प्लेट",
       "Pacific plate / प्रशांत प्लेट"
     ],
-    
+
   },
-  {
-    "question": "What kind of depositional landforms are formed when streams flowing from higher levels break into foot slope plains of low gradient?",
-    "HindiQue": "जब ऊँचे स्तरों से बहने वाली धाराएँ निचले ढलान के मैदानी क्षेत्रों में प्रवेश करती हैं, तो किस प्रकार की निक्षेपण स्थलाकृतियाँ बनती हैं?",
-    "answer": "Alluvial fans / जलोढ़ पंखे",
-    "options": [
+         {
+            "question": "What kind of depositional landforms are formed when streams flowing from higher levels break into foot slope plains of low gradient?",
+            "HindiQue": "जब ऊँचे स्तरों से बहने वाली धाराएँ निचले ढलान के मैदानी क्षेत्रों में प्रवेश करती हैं, तो किस प्रकार की निक्षेपण स्थलाकृतियाँ बनती हैं?",
+            "answer": "Alluvial fans / जलोढ़ पंखे",
+            "options": [
       "Point bars / पॉइंट बार",
       "Flood plains / बाढ़ के मैदान",
       "Alluvial fans / जलोढ़ पंखे",
       "Natural levees / प्राकृतिक तटबंध"
     ],
-    "shift": "SSC CHSL 19/10/2020 (Morning)"
+            "shift": "SSC CHSL 19/10/2020 (Morning)"
   },
-  {
-    "question": "Mushroom rocks are formed due to _____.",
-    "HindiQue": "मशरूम चट्टानें _____ के कारण बनती हैं।",
-    "answer": "Wind erosion / हवा का कटाव",
-    "options": [
+         {
+            "question": "Mushroom rocks are formed due to _____.",
+            "HindiQue": "मशरूम चट्टानें _____ के कारण बनती हैं।",
+            "answer": "Wind erosion / हवा का कटाव",
+            "options": [
       "Glacial deposition / हिमनदीय निक्षेपण",
       "Deposition of sea waves / समुद्री लहरों का निक्षेपण",
       "Running water erosion / बहते पानी का कटाव",
       "Wind erosion / हवा का कटाव"
     ],
-    "shift": "SSC MTS 26/07/2022 (Evening)"
+            "shift": "SSC MTS 26/07/2022 (Evening)"
   },
 
 
 ];
-
-  </script>
+   </script>
 
 
 
@@ -1478,73 +1437,73 @@
          answeredQuestions.sort((a, b) => a.questionIndex - b.questionIndex);
       }
 
-function showReviewQuestions() {
-   // Hide the timeline and timer
-   const timeline = document.querySelector(".time_line");
-   const timeLeftText = document.querySelector(".timer");
-   if (timeline) timeline.style.display = "none"; 
-   if (timeLeftText) timeLeftText.style.display = "none"; 
+      function showReviewQuestions() {
+         // Hide the timeline and timer
+         const timeline = document.querySelector(".time_line");
+         const timeLeftText = document.querySelector(".timer");
+         if (timeline) timeline.style.display = "none";
+         if (timeLeftText) timeLeftText.style.display = "none";
 
-   que_count = 0; 
-   quiz_box.classList.add("activeQuiz"); 
-   result_box.classList.remove("activeResult"); 
-   showAnsweredQuestion(que_count); 
+         que_count = 0;
+         quiz_box.classList.add("activeQuiz");
+         result_box.classList.remove("activeResult");
+         showAnsweredQuestion(que_count);
 
-   // Target the footer
-   const footer = document.querySelector("footer");
-   footer.innerHTML = ""; 
-   footer.style.justifyContent = 'space-around';
+         // Target the footer
+         const footer = document.querySelector("footer");
+         footer.innerHTML = "";
+         footer.style.justifyContent = 'space-around';
 
-   // Create buttons
-   const createButton = (text, className, callback, isVisible) => {
-      const button = document.createElement("button");
-      button.textContent = text;
-      button.className = className;
-      button.style.display = "block"; 
-      button.style.opacity = isVisible ? "1" : "0"; 
-      button.addEventListener("click", callback);
-      return button;
-   };
+         // Create buttons
+         const createButton = (text, className, callback, isVisible) => {
+            const button = document.createElement("button");
+            button.textContent = text;
+            button.className = className;
+            button.style.display = "block";
+            button.style.opacity = isVisible ? "1" : "0";
+            button.addEventListener("click", callback);
+            return button;
+         };
 
-   // Back button
-   const backButton = createButton("Back", "back_btn", () => {
-      if (que_count > 0) {
-         que_count--; 
-         showAnsweredQuestion(que_count); 
-         updateButtonVisibility(); 
-      } else {
-         console.log("This is the first question.");
+         // Back button
+         const backButton = createButton("Back", "back_btn", () => {
+            if (que_count > 0) {
+               que_count--;
+               showAnsweredQuestion(que_count);
+               updateButtonVisibility();
+            } else {
+               console.log("This is the first question.");
+            }
+         }, que_count > 0);
+
+         // Forward button
+         const forwardButton = createButton("Next", "forward_btn", () => {
+            if (que_count < answeredQuestions.length - 1) {
+               que_count++;
+               showAnsweredQuestion(que_count);
+               updateButtonVisibility();
+            } else {
+               console.log("This is the last question.");
+            }
+         }, que_count < answeredQuestions.length - 1);
+
+         // Finish button
+         const finishButton = createButton("Finish", "finish_btn", () => {
+            quiz_box.classList.remove("activeQuiz");
+            result_box.classList.add("activeResult");
+         }, true);
+
+         // Append buttons to the footer
+         footer.append(backButton, finishButton, forwardButton);
+
+         // Update button visibility function
+         function updateButtonVisibility() {
+            backButton.style.opacity = que_count === 0 ? "0" : "1";
+            forwardButton.style.opacity = que_count === answeredQuestions.length - 1 ? "0" : "1";
+         }
+
+         console.log("Buttons added to footer:", footer);
       }
-   }, que_count > 0);
-
-   // Forward button
-   const forwardButton = createButton("Next", "forward_btn", () => {
-      if (que_count < answeredQuestions.length - 1) {
-         que_count++; 
-         showAnsweredQuestion(que_count); 
-         updateButtonVisibility(); 
-      } else {
-         console.log("This is the last question.");
-      }
-   }, que_count < answeredQuestions.length - 1);
-
-   // Finish button
-   const finishButton = createButton("Finish", "finish_btn", () => {
-      quiz_box.classList.remove("activeQuiz");
-      result_box.classList.add("activeResult");
-   }, true);
-
-   // Append buttons to the footer
-   footer.append(backButton, finishButton, forwardButton);
-
-   // Update button visibility function
-   function updateButtonVisibility() {
-      backButton.style.opacity = que_count === 0 ? "0" : "1";
-      forwardButton.style.opacity = que_count === answeredQuestions.length - 1 ? "0" : "1";
-   }
-
-   console.log("Buttons added to footer:", footer);
-}
    </script>
 
 </body>
