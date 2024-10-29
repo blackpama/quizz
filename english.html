@@ -3,7 +3,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>❣️</title>
+   <title> English </title>
    <link rel="stylesheet" href="style.css">
    <!-- FontAweome CDN Link for Icons -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -41,6 +41,7 @@
       .start_btn {
          margin-top: 100px;
          margin-left: 30vw;
+
       }
 
 
@@ -49,6 +50,7 @@
          padding: 0.5em 1.8em;
          border-radius: 0.2em;
          box-shadow: 0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9), -0.2rem -0.2rem 0.4rem #fff;
+
       }
 
 
@@ -146,8 +148,10 @@
 
 
       section .que_text span:not(:first-child) {
-         color: red;
+         color: greenyellow;
          font-size: 20px;
+
+
       }
 
 
@@ -500,6 +504,7 @@
          font-size: 27px;
          color: red;
          font-weight: bold;
+         display: inline;
       }
    </style>
 
@@ -519,7 +524,7 @@
          top: 39px;
          flex-flow: row wrap;
          transform: translateY(-10px);
-         transition: opacity 0.4s ease, transform 0.4s ease;
+         transition: opacity 0.04s ease, transform 0.4s ease;
          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
          z-index: 10;
       }
@@ -570,11 +575,14 @@
          right: 10px;
          top: 2px;
          z-index: 20;
+         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
       }
 
       .dark-mode .theme-btn {
          background: #222;
          color: #fff;
+
       }
 
 
@@ -585,6 +593,12 @@
          left: -70px;
          width: 500px;
          overflow: hidden;
+      }
+
+
+      .startbutton {
+         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
       }
    </style>
 
@@ -875,8 +889,8 @@
    <script>
       //selecting all required elements
       const start_btn = document.querySelector(".start_btn button");
-      const svgContainer = document.getElementById("svg");
 
+      const svgContainer = document.getElementById("svg");
 
       const quiz_box = document.querySelector(".quiz_box");
 
@@ -1011,7 +1025,7 @@
          const que_text = document.querySelector(".que_text");
 
          // Update to include the question number and the question text
-         let que_tag = '<span class="quesNum">' + (index + 1) + '</span>. ' + questions[index].question + '</span>';
+         let que_tag = '<p class="quesNum">' + (index + 1) + '</p>. ' + questions[index].question + '</span>';
 
          // Get the shift text, or set it as an empty string if it doesn't exist
 
@@ -1329,7 +1343,7 @@
          const correctAnswer = answeredQuestions[index].correctAnswer;
 
          // Create the question tag (agar Q+no chahiye to Q bhr q ${answer question index})
-         let que_tag = `<span class="quesNum">${answeredQuestions[index].questionIndex + 1}.</span> ${answeredQuestions[index].question}`;
+         let que_tag = `<p class="quesNum">${answeredQuestions[index].questionIndex + 1}.</p> ${answeredQuestions[index].question}`;
 
 
 
@@ -1557,5 +1571,4 @@
          console.log("Buttons added to footer:", footer);
       }
    </script>
-
 </body>
